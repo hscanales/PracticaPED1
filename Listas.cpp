@@ -41,11 +41,24 @@ char *a[] = {
     "Cristina",
 };
 
-string generadorNombre()
+string generadorNombre(int aux)
 {
-    string nombre;
-    nombre = a[rand() % 15 + 1];
-    return nombre;
+    srand(time(NULL));
+    string nombre,nombrea;
+    
+    if((aux%2)==0){
+        nombre = a[rand() % 12 + 1];
+        nombrea = a[rand() % 15 + 1];
+    
+    }else{
+    nombre = a[rand() % 14 + 1];
+    nombrea = a[rand() % 12 + 1];};
+    
+
+    cout<< nombre + nombrea << endl;
+
+    cout<< time(NULL) << endl;
+    return nombre + nombrea;
 }
 
 class ListaSimple
@@ -66,7 +79,10 @@ public:
 ListaSimple::ListaSimple()
 {
     this->inicio = NULL;
-    this->nombreLista = generadorNombre();
+    srand(time(NULL));
+    int a = rand() % 100 + 1 ;
+    this->nombreLista = generadorNombre(a);
+     
 }
 
 libro *ListaSimple::CrearNodo(int dato, string nombre)
