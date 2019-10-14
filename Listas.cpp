@@ -54,10 +54,6 @@ string generadorNombre(int aux)
     nombre = a[rand() % 14 + 1];
     nombrea = a[rand() % 12 + 1];};
     
-
-    cout<< nombre + nombrea << endl;
-
-    cout<< time(NULL) << endl;
     return nombre + nombrea;
 }
 
