@@ -120,10 +120,19 @@ void ListaSimple::prestamo(string nombre)
 {
     libro *salto = this->inicio;
 
-    while (salto)
+    while (salto->sig)
     {
         if (salto->nombre == nombre)
         {
+            if (salto->disponibilidad == true)
+                {
+                cout << "Tu libro esta Disponible" << endl;
+                salto->disponibilidad = false;
+                }
+            else
+                {
+                cout << "Tu Libro ya se fue prestado" << endl;
+                }
             break;
         }
         else
@@ -132,41 +141,30 @@ void ListaSimple::prestamo(string nombre)
         }
     }
 
-    if (salto->disponibilidad == true)
-    {
-        cout << "Tu libro esta Disponible" << endl;
-        salto->disponibilidad = false;
-    }
-    else
-    {
-        cout << "Tu Libro ya se fue prestado" << endl;
-    }
+ 
 }
 
 void ListaSimple::regreso(string nombre)
 {
     libro *salto = this->inicio;
 
-    while (salto)
+    while (salto->sig)
     {
-        if (salto->nombre == nombre)
-        {
-            break;
+        if (salto->nombre == nombre){
+            if (salto->disponibilidad == false){
+                cout << "Gracias por Devolver tu Libro" << endl;
+                salto->disponibilidad = true;
+            }
+            else
+            {
+                cout << "¿Como puedes devolver un libro que no has prestado?" << endl;
+                salto = salto->sig;
+            };
         }
         else
         {
             salto = salto->sig;
-        }
-    }
-
-    if (salto->disponibilidad == false)
-    {
-        cout << "Gracias por Devolver tu Libro" << endl;
-        salto->disponibilidad = true;
-    }
-    else
-    {
-        cout << "¿Como puedes devolver un libro que no has prestado?" << endl;
+        };
     }
 }
 
@@ -195,7 +193,7 @@ int main()
     l.insertarFinal(420, "Como ser millonario");
 
     l.mostrar();
-    l.prestamo("Tarzan");
+    l.prestamo("AAA");
 
     l.mostrar();
     l.regreso("Tarzan");
